@@ -54,4 +54,4 @@
 
 如果你觉得本项目有帮助，欢迎 star。
 
-- https://rsshub.app/csdn/blog/csdngeeknews -> https://g0fcn.github.io/RSS-GPT/brett-terpstra.xml
+- https://rsshub.app/sspai/index -> https://g0fcn.github.io/RSS-GPT/ssp.xml

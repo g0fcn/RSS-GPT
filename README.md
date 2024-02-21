@@ -50,4 +50,4 @@ These feeds on hosted in the [`docs/` subdirectory](https://github.com/yinan-c/R
 
 I will consider hosting more feeds in the future. Email me or submit an issue if there is any question using the script or any suggestions.
 
-- https://rsshub.app/csdn/blog/csdngeeknews -> https://g0fcn.github.io/RSS-GPT/brett-terpstra.xml
+- https://rsshub.app/sspai/index -> https://g0fcn.github.io/RSS-GPT/ssp.xml
