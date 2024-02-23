@@ -192,3 +192,12 @@ Existing_entries: 18
 Fetching from https://rsshub.app/sspai/index
 append_entries: 0
 Finish: 2024-02-23 04:14:58.887158
+------------------------------------------------------
+Started: 2024-02-23 06:17:38.944753
+Existing_entries: 18
+Fetching from https://rsshub.app/sspai/index
+Token length: 8304
+Summarized using GPT-3.5-turbo-1106
+Append: [磁带，可不止三十年前的老歌](https://sspai.com/post/86559)
+append_entries: 1
+Finish: 2024-02-23 06:17:47.183081
