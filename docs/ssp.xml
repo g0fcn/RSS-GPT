@@ -4,13 +4,14 @@
 <title>少数派 -- 首页</title>
 <link>https://sspai.com</link>
 
+
 <item>
 <title>用广告拦截器隐藏干扰元素：常用思路和语法介绍</title>
 <link>https://sspai.com/post/86631</link>
 <guid>https://sspai.com/post/86631</guid>
 <content:encoded><![CDATA[
 <div> 广告拦截器, 规则集, CSS选择器, class和id, 位置特征
-<br><br>总结:
+<br /><br />总结:
 在网络内容生态中，广告拦截器成为必需品。然而，规则集质量参差不齐，需要自行定制。使用CSS选择器按class和id屏蔽元素，也可根据位置特征选择元素。 <div>
 <h2>引言</h2>
 <p>在如今群魔乱舞的网络内容生态下，广告拦截器几乎已经从一种可选项变成了必需品；没有广告拦截的浏览体验几乎是不可接受的。</p>
@@ -113,9 +114,7 @@
 <p>尽管通过 class、id 和属性选择器已经能有效应对很多屏蔽需求，但这些选择器依赖于找出属性值中的规律，而这并不总是可行的。有些场合，干扰元素的属性特征并不明显，但出现的位置比较固定。这时，<a href="https://developer.mozilla.org/en-US/docs/Learn/CSS/Building_blocks/Selectors/Combinators">关系选择器</a>（combinators）——根据层级和位置关系选择元素——就是更好的选择。</p>
 ]]></content:encoded>
 <pubDate>Fri, 23 Feb 2024 11:27:39 GMT</pubDate>
-<pubDate>Fri, 23 Feb 2024 11:27:39 GMT</pubDate>
 </item>
-
 <item>
 <title>本周看什么 | 最近值得一看的 9 部作品</title>
 <link>https://sspai.com/post/86623</link>
