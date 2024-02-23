@@ -177,3 +177,12 @@ Existing_entries: 17
 Fetching from https://rsshub.app/sspai/index
 append_entries: 0
 Finish: 2024-02-23 00:57:28.587353
+------------------------------------------------------
+Started: 2024-02-23 02:18:48.997014
+Existing_entries: 17
+Fetching from https://rsshub.app/sspai/index
+Token length: 3671
+Summarized using GPT-3.5-turbo-1106
+Append: [派早报：小米发布小米 14 Ultra 手机、三星发布 Galaxy Fit 3 健身手环等](https://sspai.com/post/86608)
+append_entries: 1
+Finish: 2024-02-23 02:20:42.869092
