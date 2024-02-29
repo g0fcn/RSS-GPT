@@ -4,12 +4,12 @@
 <title>少数派 -- 首页</title>
 <link>https://sspai.com</link>
 
+
 <item>
 <title>如何快速重置 macOS 应用窗口的位置</title>
 <link>https://sspai.com/post/86772</link>
 <guid>https://sspai.com/post/86772</guid>
 <content:encoded><![CDATA[
-
 <h2>背景</h2>
 <p>「记忆应用的使用状态」一直是 macOS 追求的交互设计目标。从 Macintosh 时代开始，应用窗口就「学会」了记住自己每次打开时所处的位置，并在下次打开时自动恢复。Finder、Keynote 这类多窗口应用中，每个窗口还会分别记住自己的位置。</p>
 <p>这种设计背后其实是一种隐藏的「拟物」思想：通过让窗口与其空间位置关联起来，提高熟悉感和效率。</p>
@@ -39,9 +39,7 @@
 <p>所以，很多时候只需要把这段信息从对应的 <code>plist</code> 中拿掉就可以还原应用的窗口大小和位置到默认。</p>
 ]]></content:encoded>
 <pubDate>Thu, 29 Feb 2024 12:03:36 GMT</pubDate>
-<pubDate>Thu, 29 Feb 2024 12:03:36 GMT</pubDate>
 </item>
-
 <item>
 <title>新玩意 173｜少数派的编辑们最近买了啥？</title>
 <link>https://sspai.com/post/86780</link>
