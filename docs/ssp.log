@@ -1095,3 +1095,15 @@ Existing_entries: 53
 Fetching from https://rsshub.app/sspai/index
 append_entries: 0
 Finish: 2024-03-05 08:17:10.296565
+------------------------------------------------------
+Started: 2024-03-05 10:15:09.238135
+Existing_entries: 53
+Fetching from https://rsshub.app/sspai/index
+Summarization failed, append the original article
+error: Error code: 401 - {'error': {'message': 'Incorrect API key provided: sess-0fU*********************************CSJU. You can find your API key at https://platform.openai.com/account/api-keys.', 'type': 'invalid_request_error', 'param': None, 'code': 'invalid_api_key'}}
+Append: [好键盘还不贵，派商店的 K3 / K3 Pro 的史低清仓](https://sspai.com/post/86893)
+Summarization failed, append the original article
+error: Error code: 401 - {'error': {'message': 'Incorrect API key provided: sess-0fU*********************************CSJU. You can find your API key at https://platform.openai.com/account/api-keys.', 'type': 'invalid_request_error', 'param': None, 'code': 'invalid_api_key'}}
+Append: [城市收藏夹｜慕尼黑的二月](https://sspai.com/post/86664)
+append_entries: 2
+Finish: 2024-03-05 10:15:09.911045
