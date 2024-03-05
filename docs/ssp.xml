@@ -4,18 +4,16 @@
 <title>少数派 -- 首页</title>
 <link>https://sspai.com</link>
 
+
 <item>
 <title>高效重复+双链笔记，这个 APP 可能是背单词的终极解决方案</title>
 <link>https://sspai.com/post/85470</link>
 <guid>https://sspai.com/post/85470</guid>
 <content:encoded><![CDATA[
-
 <p>今年上半年为了玩一些没有汉化的游戏，开始重新背单词，用了多款 App 之后，感觉没有一个自已是满意的，他们存在以下这些问题</p><ul><li>开屏广告和课程推送(不需要，谢谢)</li><li>一遍一遍做选择题(我没那么多时间陪你玩)</li><li>无法动态调整学习量</li><li>强制要求复习</li><li>UI 不好看</li></ul><p>在学习了差不多两个月的 SwiftUI 和 iOS 开发相关的东西，和 Xcode 斗智斗勇之后，<a href="https://apps.apple.com/cn/app/id6450109182">嗯背单词</a>终于在 7 月上架 App Store。简单概括一下特点：</p><ul><li>全新算法，自由决定，动态安排学习量</li><li>创建单词之间的联系，双向关联，联想记忆</li><li>多种筛选条件，方便定制学习内容</li><li>背单词 APP 中的颜值天花板</li></ul><figure class="image ss-img-wrapper"><img src="https://cdn.sspai.com/2023/12/30/0a8ceb8721caaa772792bd2dee75bae9.png?imageView2/2/w/1120/q/90/interlace/1/ignore-error/1" /><figcaption>紧凑型设计，主要功能全部在首页上</figcaption></figure><figure class="image ss-img-wrapper"><img src="https://cdn.sspai.com/2023/12/30/507a5fa838708b185d966e4848fbcc9c.png?imageView2/2/w/1120/q/90/interlace/1/ignore-error/1" /><figcaption>完全适配单手操作的交互设计</figcaption></figure><h2>间隔记忆算法的简化版本，STRS 算法</h2><p>这是一种简单的状态机算法，和常见的间隔记忆算法不同，是把单词分配到几种状态之中(认识，熟悉，掌握)，然后从中随机抽取进行记忆</p><p>因为和时间无关，所以隔多久再背都没有关系，已经工作的人很难安排在固定时间背固定量的单词，这种佛系的学习方式会很容易坚持下去</p><p>其它 App 对于熟记的单词基本上会提供一个排除选项（百词斩的斩，墨墨或不背单词的标熟），那么之后不会再推送这个单词， 这种交互模式存在一个明显的问题，"怎么保证被排除的单词不会再次遗忘？"，毫无疑问答案是会的，那么用户在担心再次遗忘的前提下，他们会很介意使用这个功能</p><p>而在 STRS 算法中，标记为掌握的单词，依然可以在回顾模式中不断反复记忆，及时检查是否有遗忘的部分，也适合考试前大量的复习</p><figure class="image ss-img-wrapper"><img src="https://cdn.sspai.com/2023/12/30/5a786d93fff1287deab6a962690ec6fb.png?imageView2/2/w/1120/q/90/interlace/1/ignore-error/1" /><figcaption>Smooth Transition Random Selection</figcaption></figure><h2>背的越多，背的就越多</h2><p>除了高效重复的算法之外，联想记忆被证明是最有效的记忆方式，目前所有的背单词 APP，内部并没有实现关联功能，本质不过是把中英词语的对应关系灌输给用户</p><p>背单词的时候常常会遇到一些意思相近的单词，例如 approve, agree, consent, permit, allow，如果把这些单词链接在一起，就会形成更加稳定的记忆效果</p><p>有些 APP 虽然也会提供一些同义词，反义词相关的内容，但是第一它们不能编辑，当你想到相关东西的时候并不能手动添加新的内容进去，第二它们也并不是双向关系</p><p>通过这个功能在学习过程中不断创建新的连接关系，不断的把单词聚集在语境和场景下面，背的越多，背的就越多</p><figure class="image ss-img-wrapper"><img src="https://cdn.sspai.com/2023/12/30/da86b1ed60a2d95c169dcc3c68bcbc06.png?imageView2/2/w/1120/q/90/interlace/1/ignore-error/1" /><figcaption>轻松创建词与词之间的双向链接</figcaption></figure><h2>拼写测试，爽</h2><p>拼写测试一直是大多数软件中被边缘化的功能，嗯背单词在这一点上做了很多努力</p><ul><li>五个单词一组，一遍听写一遍默写</li><li>自动提交正确答案，进入下一个单词</li><li>错误答案仅提示 50% 字母</li><li>拼写成绩计入首页，并按照正确率，耗时给予评价</li></ul><figure class="image ss-img-wrapper"><img src="https://cdn.sspai.com/2023/12/30/2408c034408a34b6fb444f0c389ff7d2.png?imageView2/2/w/1120/q/90/interlace/1/ignore-error/1" /><figcaption>拼写测试</figcaption></figure><h2>自由定制你的学习内容</h2><p>这也是嗯背单词的一个非常重要的功能，其它 APP 基本上你选择什么词书就只能背什么单词，自定义导入功能也仅能在网页端操作</p><p>这里可以根据多种条件批量筛选需要学习的单词，包括</p><ul><li>单词，词组，大小写类型</li><li>单词词性(名词，形容词等)</li><li>单词长度(方便直接排除过短或过长的单词)</li><li>学习状态(可以批量修改学习状态)</li><li>已经掌握的单词(排除在其它词书中已经学过的单词)</li></ul><figure class="image ss-img-wrapper"><img src="https://cdn.sspai.com/2023/12/30/bde093ee6499f530911108fd33818a05.png?imageView2/2/w/1120/q/90/interlace/1/ignore-error/1" /><figcaption>单词筛选和导航</figcaption></figure><p>App 现在仅有 iOS 版本， 由于安卓平台对于个人开发者的限制，暂时不会开发安卓版本，请大家多多包涵。应用内提供了无限制使用的免费词书，付费用户可以解锁全部词书以及自定义导入功能，欢迎下载，感谢支持~</p><span class="ss-application">&nbsp;</span><p>&nbsp;</p><p>&nbsp;</p>
 ]]></content:encoded>
 <pubDate>Tue, 02 Jan 2024 00:59:38 GMT</pubDate>
-<pubDate>Tue, 02 Jan 2024 00:59:38 GMT</pubDate>
 </item>
-
 <item>
 <title>派早报：Apple 发布新款 MacBook Air，Apple 发布与 Spotify 有关的声明等</title>
 <link>https://sspai.com/post/86902</link>
