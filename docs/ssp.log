@@ -1269,3 +1269,12 @@ Existing_entries: 63
 Fetching from https://rsshub.app/sspai/index
 append_entries: 0
 Finish: 2024-03-07 08:13:45.746324
+------------------------------------------------------
+Started: 2024-03-07 10:12:59.626336
+Existing_entries: 63
+Fetching from https://rsshub.app/sspai/index
+Summarization failed, append the original article
+error: Error code: 401 - {'error': {'message': 'Incorrect API key provided: sess-0fU*********************************CSJU. You can find your API key at https://platform.openai.com/account/api-keys.', 'type': 'invalid_request_error', 'param': None, 'code': 'invalid_api_key'}}
+Append: [年度征文 | 当了年2全职奶爸感悟：生孩子还需慎重](https://sspai.com/post/86863)
+append_entries: 1
+Finish: 2024-03-07 10:13:00.136401
