@@ -1254,3 +1254,12 @@ error: Error code: 401 - {'error': {'message': 'Incorrect API key provided: sess
 Append: [派早报：Apple 发布 iOS 17.4 更新、Meta 系产品出现大面积访问故障等](https://sspai.com/post/86993)
 append_entries: 1
 Finish: 2024-03-07 04:15:30.002741
+------------------------------------------------------
+Started: 2024-03-07 06:18:09.876038
+Existing_entries: 62
+Fetching from https://rsshub.app/sspai/index
+Summarization failed, append the original article
+error: Error code: 401 - {'error': {'message': 'Incorrect API key provided: sess-0fU*********************************CSJU. You can find your API key at https://platform.openai.com/account/api-keys.', 'type': 'invalid_request_error', 'param': None, 'code': 'invalid_api_key'}}
+Append: [2024，我用这些软件搭建记录体系](https://sspai.com/post/85785)
+append_entries: 1
+Finish: 2024-03-07 06:18:10.267832
