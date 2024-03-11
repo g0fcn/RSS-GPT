@@ -1578,3 +1578,12 @@ error: Error code: 401 - {'error': {'message': 'Incorrect API key provided: sess
 Append: [派早报：OpenAI 宣布新董事会成员，Altman 回归](https://sspai.com/post/87084)
 append_entries: 1
 Finish: 2024-03-11 04:16:59.990572
+------------------------------------------------------
+Started: 2024-03-11 06:16:57.436360
+Existing_entries: 74
+Fetching from https://rsshub.app/sspai/index
+Summarization failed, append the original article
+error: Error code: 401 - {'error': {'message': 'Incorrect API key provided: sess-0fU*********************************CSJU. You can find your API key at https://platform.openai.com/account/api-keys.', 'type': 'invalid_request_error', 'param': None, 'code': 'invalid_api_key'}}
+Append: [年度征文 | 渐入佳境：斜杠程序员的数字游民转型之旅](https://sspai.com/post/86832)
+append_entries: 1
+Finish: 2024-03-11 06:16:57.893664
