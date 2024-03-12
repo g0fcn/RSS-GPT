@@ -1704,3 +1704,12 @@ error: Error code: 401 - {'error': {'message': 'Incorrect API key provided: sess
 Append: [社区速递 035 | 派友们的最爱字体、输入法鼓捣和新玩意们](https://sspai.com/post/87128)
 append_entries: 2
 Finish: 2024-03-12 12:24:14.262446
+------------------------------------------------------
+Started: 2024-03-12 14:12:05.709551
+Existing_entries: 84
+Fetching from https://rsshub.app/sspai/index
+Summarization failed, append the original article
+error: Error code: 401 - {'error': {'message': 'Incorrect API key provided: sess-0fU*********************************CSJU. You can find your API key at https://platform.openai.com/account/api-keys.', 'type': 'invalid_request_error', 'param': None, 'code': 'invalid_api_key'}}
+Append: [年度征文 |「狐狸」的成长：兴趣杂、难坚持，如何找到精进之路？](https://sspai.com/post/86886)
+append_entries: 1
+Finish: 2024-03-12 14:12:06.219406
