@@ -1680,3 +1680,15 @@ Existing_entries: 80
 Fetching from https://rsshub.app/sspai/index
 append_entries: 0
 Finish: 2024-03-12 08:16:20.035964
+------------------------------------------------------
+Started: 2024-03-12 10:13:35.392715
+Existing_entries: 80
+Fetching from https://rsshub.app/sspai/index
+Summarization failed, append the original article
+error: Error code: 401 - {'error': {'message': 'Incorrect API key provided: sess-0fU*********************************CSJU. You can find your API key at https://platform.openai.com/account/api-keys.', 'type': 'invalid_request_error', 'param': None, 'code': 'invalid_api_key'}}
+Append: [少数派的 12 岁：正版软件特惠限时开启](https://sspai.com/post/87126)
+Summarization failed, append the original article
+error: Error code: 401 - {'error': {'message': 'Incorrect API key provided: sess-0fU*********************************CSJU. You can find your API key at https://platform.openai.com/account/api-keys.', 'type': 'invalid_request_error', 'param': None, 'code': 'invalid_api_key'}}
+Append: [App+1 | 寻找最适合写小说的工具——novelWriter](https://sspai.com/post/86447)
+append_entries: 2
+Finish: 2024-03-12 10:13:36.098681
