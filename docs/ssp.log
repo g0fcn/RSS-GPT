@@ -1779,3 +1779,16 @@ Existing_entries: 87
 Fetching from https://rsshub.app/sspai/index
 append_entries: 0
 Finish: 2024-03-13 10:14:06.756167
+------------------------------------------------------
+Started: 2024-03-13 12:24:30.673253
+Existing_entries: 87
+Fetching from https://rsshub.app/sspai/index
+Summarization failed, append the original article
+error: Error code: 401 - {'error': {'message': 'Incorrect API key provided: sess-0fU*********************************CSJU. You can find your API key at https://platform.openai.com/account/api-keys.', 'type': 'invalid_request_error', 'param': None, 'code': 'invalid_api_key'}}
+Append: [年度征文｜上什么班啊，不过是来历劫罢了](https://sspai.com/post/86905)
+Summarization failed, append the original article
+error: Error code: 401 - {'error': {'message': 'Incorrect API key provided: sess-0fU*********************************CSJU. You can find your API key at https://platform.openai.com/account/api-keys.', 'type': 'invalid_request_error', 'param': None, 'code': 'invalid_api_key'}}
+Append: [将手机变成胶片机，拍一张专属「回忆盲盒」：Moment](https://sspai.com/post/85031)
+Append: [手把手教你装机：PC 组装入门指南](https://sspai.com/post/86958)
+append_entries: 3
+Finish: 2024-03-13 12:24:31.291748
