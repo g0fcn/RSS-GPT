@@ -1837,3 +1837,12 @@ error: Error code: 401 - {'error': {'message': 'Incorrect API key provided: sess
 Append: [派早报：大上推出彩色墨水屏显示器、Sora 服务年内开放等](https://sspai.com/post/87177)
 append_entries: 1
 Finish: 2024-03-14 02:18:33.560127
+------------------------------------------------------
+Started: 2024-03-14 04:15:29.016285
+Existing_entries: 91
+Fetching from https://rsshub.app/sspai/index
+Summarization failed, append the original article
+error: Error code: 401 - {'error': {'message': 'Incorrect API key provided: sess-0fU*********************************CSJU. You can find your API key at https://platform.openai.com/account/api-keys.', 'type': 'invalid_request_error', 'param': None, 'code': 'invalid_api_key'}}
+Append: [年度征文 | 赐我一场前去欧洲的流亡](https://sspai.com/post/86992)
+append_entries: 1
+Finish: 2024-03-14 04:15:29.464969
