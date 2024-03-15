@@ -1915,3 +1915,12 @@ Existing_entries: 95
 Fetching from https://rsshub.app/sspai/index
 append_entries: 0
 Finish: 2024-03-15 00:59:05.326935
+------------------------------------------------------
+Started: 2024-03-15 02:19:48.267572
+Existing_entries: 95
+Fetching from https://rsshub.app/sspai/index
+Summarization failed, append the original article
+error: Error code: 401 - {'error': {'message': 'Incorrect API key provided: sess-0fU*********************************CSJU. You can find your API key at https://platform.openai.com/account/api-keys.', 'type': 'invalid_request_error', 'param': None, 'code': 'invalid_api_key'}}
+Append: [派早报：Google 将在 5 月 14 日召开 I/O 大会](https://sspai.com/post/87209)
+append_entries: 1
+Finish: 2024-03-15 02:19:48.652156
