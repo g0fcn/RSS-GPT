@@ -1924,3 +1924,12 @@ error: Error code: 401 - {'error': {'message': 'Incorrect API key provided: sess
 Append: [派早报：Google 将在 5 月 14 日召开 I/O 大会](https://sspai.com/post/87209)
 append_entries: 1
 Finish: 2024-03-15 02:19:48.652156
+------------------------------------------------------
+Started: 2024-03-15 04:16:21.527605
+Existing_entries: 96
+Fetching from https://rsshub.app/sspai/index
+Summarization failed, append the original article
+error: Error code: 401 - {'error': {'message': 'Incorrect API key provided: sess-0fU*********************************CSJU. You can find your API key at https://platform.openai.com/account/api-keys.', 'type': 'invalid_request_error', 'param': None, 'code': 'invalid_api_key'}}
+Append: [年度征文 | 两个身份的拉扯与平衡：一边上班，一边当艺术家](https://sspai.com/post/86989)
+append_entries: 1
+Finish: 2024-03-15 04:16:22.084002
