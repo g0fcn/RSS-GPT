@@ -2012,3 +2012,12 @@ Existing_entries: 100
 Fetching from https://rsshub.app/sspai/index
 append_entries: 0
 Finish: 2024-03-16 04:14:58.570938
+------------------------------------------------------
+Started: 2024-03-16 06:15:51.706893
+Existing_entries: 100
+Fetching from https://rsshub.app/sspai/index
+Summarization failed, append the original article
+error: Error code: 401 - {'error': {'message': 'Incorrect API key provided: sess-0fU*********************************CSJU. You can find your API key at https://platform.openai.com/account/api-keys.', 'type': 'invalid_request_error', 'param': None, 'code': 'invalid_api_key'}}
+Append: [纯电长途、节假日出行，蔚来换电可还行](https://sspai.com/post/86882)
+append_entries: 1
+Finish: 2024-03-16 06:15:52.108937
