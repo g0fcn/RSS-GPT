@@ -2258,3 +2258,10 @@ Fetching from https://rsshub.app/sspai/index
 Feed error: <unknown>:151:57013: not well-formed (invalid token)
 append_entries: 0
 Finish: 2024-03-19 04:16:13.900600
+------------------------------------------------------
+Started: 2024-03-19 06:16:57.051918
+Existing_entries: 102
+Fetching from https://rsshub.app/sspai/index
+Feed error: <unknown>:151:57013: not well-formed (invalid token)
+append_entries: 0
+Finish: 2024-03-19 06:16:57.314437
