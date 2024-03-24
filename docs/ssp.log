@@ -2699,3 +2699,12 @@ Existing_entries: 128
 Fetching from https://rsshub.app/sspai/index
 append_entries: 0
 Finish: 2024-03-24 10:13:26.951819
+------------------------------------------------------
+Started: 2024-03-24 12:23:55.655095
+Existing_entries: 128
+Fetching from https://rsshub.app/sspai/index
+Summarization failed, append the original article
+error: Error code: 401 - {'error': {'message': 'Incorrect API key provided: sess-0fU*********************************CSJU. You can find your API key at https://platform.openai.com/account/api-keys.', 'type': 'invalid_request_error', 'param': None, 'code': 'invalid_api_key'}}
+Append: [2023 年度征文获奖结果公布](https://sspai.com/post/87503)
+append_entries: 1
+Finish: 2024-03-24 12:23:56.169242
