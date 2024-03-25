@@ -2774,3 +2774,12 @@ error: Error code: 401 - {'error': {'message': 'Incorrect API key provided: sess
 Append: [UCG 评测 |「幻水」之韵，在此新生：《百英雄传》先行体验报告](https://sspai.com/post/87422)
 append_entries: 1
 Finish: 2024-03-25 08:18:10.067877
+------------------------------------------------------
+Started: 2024-03-25 10:14:37.847987
+Existing_entries: 131
+Fetching from https://rsshub.app/sspai/index
+Summarization failed, append the original article
+error: Error code: 401 - {'error': {'message': 'Incorrect API key provided: sess-0fU*********************************CSJU. You can find your API key at https://platform.openai.com/account/api-keys.', 'type': 'invalid_request_error', 'param': None, 'code': 'invalid_api_key'}}
+Append: [与 Google Pixel 在日本的 169 天：Pixel Fold 是「精致败类」吗？](https://sspai.com/post/87344)
+append_entries: 1
+Finish: 2024-03-25 10:14:38.339317
