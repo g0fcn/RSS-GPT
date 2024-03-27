@@ -2933,3 +2933,12 @@ error: Error code: 401 - {'error': {'message': 'Incorrect API key provided: sess
 Append: [派早报：WWDC24 将于 6 月 10 日举行等](https://sspai.com/post/87585)
 append_entries: 1
 Finish: 2024-03-27 04:17:41.285534
+------------------------------------------------------
+Started: 2024-03-27 06:17:15.471738
+Existing_entries: 140
+Fetching from https://rsshub.app/sspai/index
+Summarization failed, append the original article
+error: Error code: 401 - {'error': {'message': 'Incorrect API key provided: sess-0fU*********************************CSJU. You can find your API key at https://platform.openai.com/account/api-keys.', 'type': 'invalid_request_error', 'param': None, 'code': 'invalid_api_key'}}
+Append: [数字时代的人文关怀：Google 无障碍解决方案汇总](https://sspai.com/post/87150)
+append_entries: 1
+Finish: 2024-03-27 06:17:15.882539
