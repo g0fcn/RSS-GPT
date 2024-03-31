@@ -3281,3 +3281,12 @@ error: Error code: 401 - {'error': {'message': 'Incorrect API key provided: sess
 Append: [空想特摄的浪漫：奥特曼入坑指南](https://sspai.com/post/87652)
 append_entries: 1
 Finish: 2024-03-31 10:13:40.938487
+------------------------------------------------------
+Started: 2024-03-31 12:23:01.352167
+Existing_entries: 154
+Fetching from https://rsshub.app/sspai/index
+Summarization failed, append the original article
+error: Error code: 401 - {'error': {'message': 'Incorrect API key provided: sess-0fU*********************************CSJU. You can find your API key at https://platform.openai.com/account/api-keys.', 'type': 'invalid_request_error', 'param': None, 'code': 'invalid_api_key'}}
+Append: [本月玩什么 | 龙之信条 2、浪人崛起、Open Roads、Llamasoft: The Jeff Minter Story](https://sspai.com/post/87696)
+append_entries: 1
+Finish: 2024-03-31 12:23:01.823830
