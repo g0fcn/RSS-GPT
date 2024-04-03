@@ -4,18 +4,16 @@
 <title>少数派 -- 首页</title>
 <link>https://sspai.com</link>
 
+
 <item>
 <title>派早报：ChatGPT 支持免登录使用等</title>
 <link>https://sspai.com/post/87773</link>
 <guid>https://sspai.com/post/87773</guid>
 <content:encoded><![CDATA[
-
 <h2>你可能错过的新鲜事</h2><h3>ChatGPT 已支持免登录使用</h3><p>OpenAI 于 4 月2 日宣布，用户后续无需注册、登录 OpenAI 账号也可以使用 ChatGPT，不过未登录时只能使用 GPT-3.5。OpenAI 表示其政策核心是让 ChatGPT 得到更广泛的使用，对于未注册用户同样提供数据共享选项，默认情况下用户的对话等数据将用于模型训练，但用户可以在设置里禁用数据共享。需要说明的是，并非所有地区的用户都可以免登录直接使用 ChatGPT，相关的区域支持还在逐渐扩展中，多数区域暂时仍需要注册账号才能使用。<a href="https://www.landiannews.com/archives/103162.html?utm_sources=ourl.co&amp;utm_medium=social&amp;utm_campaign=none">来源</a></p><h3>Chrome 将针对 cookie 劫持问题推出新标准</h3><p>9to5Google 报道称，Google Chrome 团队近期提出了一项针对浏览器 cookie 劫持问题的 DBSC 标准提议，该标准全名 Device Bound Session Credentials，旨在避免存储用户凭据信息的 cookie 文件被恶意盗用的问题。具体而言，DBSC 标准将 cookie 文件存储的用户凭据与用户的实际设备绑定，借助受信平台模块或其他软件方案来本地存储私钥，然后通过公私钥配对的方式来验证设备身份。DBSC 已经在 Chrome Beta 渠道的部分用户中进行了测试，Google 计划在 2024 年年底前开展更大规模的试行。<a href="https://9to5google.com/2024/04/02/chrome-cookie-theft-dbsc/">来源</a></p><h3>雅虎收购 Artifact</h3><p>雅虎和 Artifact 于当地时间周二共同公布收购事宜，后者为 Instagram 联合创始人 Mike Krieger 所打造的资讯 app，旨在借助 AI 算法和社交网络向用户推送更加个性化的阅读推荐（类似早前国内的「轻芒」阅读），2023 年该应用曾获 Google Play 应用商店的年度应用奖项。2024 年 1 月 Artifact <a href="https://medium.com/artifact-news/shutting-down-artifact-1e70de46d419">宣布关闭</a>并于 2 月完全结束内容运营，本次雅虎的收购则主要面向 Artifact 在内容分类和推荐系统上的技术而非针对团队，双方均拒绝分享收购成本，后续 Artifact 的联合创始人还将担任雅虎的「特别顾问」。<a href="https://www.theverge.com/2024/4/2/24118436/yahoo-news-artifact-acquisition">来源</a></p><h2>看看就行的小道消息</h2><ul><li>9To5Mac 援引爆料人消息称，iOS 18 的设备兼容性将与 iOS 17 保持一致，包括 iPhone 15 系列、iPhone 14 系列、iPhone 13 系列、iPhone 12 系列、iPhone 11 系列、iPhone XS 系列、iPhone XR 以及 iPhone SE（第二代和第三代）；不过 iPadOS 18 将不再支持 iPad（第六代）、iPad Pro(12.9 英寸) (第 2 代) 以及 iPad Pro (10.5 英寸)。<a href="https://www.ithome.com/0/759/540.htm">来源</a></li></ul><h2>少数派的近期动态</h2><ul><li>一键解决工作与生活需求的 BANG!CASE 手机壳，目前已开启超前预售。<a href="https://sspai.com/product/36"><strong>前往了解详情</strong></a></li><li>参与众测赢耳机，第三期少数派 × 骁龙先享体验计划现已开启。<a href="https://sspai.com/post/86965"><strong>立即参与</strong></a></li></ul><h2>你可能错过的文章</h2><ul><li><a href="https://sspai.com/post/87761">社区速递 038 | 新玩意、进度条和派友们最爱的鼠标</a></li><li><a href="https://sspai.com/post/86747">自我记录、量化与回溯的数字之旅</a></li><li><a href="https://sspai.com/post/87558">一日一技 | Windows 双网卡使用 WiFi 优先上网</a></li></ul><p>&gt; 关注 <a href="https://sspai.com/s/J71e">少数派公众号</a>，解锁全新阅读体验 📰</p><p>&gt; 实用、好用的 <a href="https://sspai.com/mall">正版软件</a>，少数派为你呈现 🚀</p>
 ]]></content:encoded>
 <pubDate>Wed, 03 Apr 2024 00:01:00 GMT</pubDate>
-<pubDate>Wed, 03 Apr 2024 00:01:00 GMT</pubDate>
 </item>
-
 <item>
 <title>社区速递 038 | 新玩意、进度条和派友们最爱的鼠标</title>
 <link>https://sspai.com/post/87761</link>
