@@ -3494,3 +3494,12 @@ Existing_entries: 163
 Fetching from https://rsshub.app/sspai/index
 append_entries: 0
 Finish: 2024-04-03 00:58:47.148151
+------------------------------------------------------
+Started: 2024-04-03 02:20:43.823177
+Existing_entries: 163
+Fetching from https://rsshub.app/sspai/index
+Summarization failed, append the original article
+error: Error code: 401 - {'error': {'message': 'Incorrect API key provided: sess-0fU*********************************CSJU. You can find your API key at https://platform.openai.com/account/api-keys.', 'type': 'invalid_request_error', 'param': None, 'code': 'invalid_api_key'}}
+Append: [派早报：ChatGPT 支持免登录使用等](https://sspai.com/post/87773)
+append_entries: 1
+Finish: 2024-04-03 02:20:44.246969
