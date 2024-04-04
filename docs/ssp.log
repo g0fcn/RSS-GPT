@@ -3602,3 +3602,9 @@ error: Error code: 401 - {'error': {'message': 'Incorrect API key provided: sess
 Append: [写给 Apple 用户的情书：vivo X Fold3 Pro](https://sspai.com/post/87747)
 append_entries: 1
 Finish: 2024-04-04 06:17:05.180867
+------------------------------------------------------
+Started: 2024-04-04 08:17:35.293337
+Existing_entries: 169
+Fetching from https://rsshub.app/sspai/index
+append_entries: 0
+Finish: 2024-04-04 08:17:35.491743
