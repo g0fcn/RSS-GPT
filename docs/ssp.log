@@ -3842,3 +3842,12 @@ Existing_entries: 173
 Fetching from https://rsshub.app/sspai/index
 append_entries: 0
 Finish: 2024-04-07 10:12:45.211668
+------------------------------------------------------
+Started: 2024-04-07 12:22:41.764469
+Existing_entries: 173
+Fetching from https://rsshub.app/sspai/index
+Summarization failed, append the original article
+error: Error code: 401 - {'error': {'message': 'Incorrect API key provided: sess-0fU*********************************CSJU. You can find your API key at https://platform.openai.com/account/api-keys.', 'type': 'invalid_request_error', 'param': None, 'code': 'invalid_api_key'}}
+Append: [你的眼睛也会长结石，但这事没什么可怕的](https://sspai.com/post/87853)
+append_entries: 1
+Finish: 2024-04-07 12:22:42.326021
