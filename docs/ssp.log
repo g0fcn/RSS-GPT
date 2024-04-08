@@ -3917,3 +3917,12 @@ error: Error code: 401 - {'error': {'message': 'Incorrect API key provided: sess
 Append: [更适合P人宝宝体质的学习方法：你根本不需要“自律”](https://sspai.com/post/87551)
 append_entries: 1
 Finish: 2024-04-08 08:17:35.579768
+------------------------------------------------------
+Started: 2024-04-08 10:16:35.918214
+Existing_entries: 176
+Fetching from https://rsshub.app/sspai/index
+Summarization failed, append the original article
+error: Error code: 401 - {'error': {'message': 'Incorrect API key provided: sess-0fU*********************************CSJU. You can find your API key at https://platform.openai.com/account/api-keys.', 'type': 'invalid_request_error', 'param': None, 'code': 'invalid_api_key'}}
+Append: [从零开始认识 API，把网页信息化为己用](https://sspai.com/post/87885)
+append_entries: 1
+Finish: 2024-04-08 10:16:36.435848
