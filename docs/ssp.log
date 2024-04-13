@@ -4329,3 +4329,9 @@ error: Error code: 401 - {'error': {'message': 'Incorrect API key provided: sess
 Append: [触碰虚拟与现实的边界：少数派的 Let's visionOS 2024 大会回顾](https://sspai.com/post/88040)
 append_entries: 1
 Finish: 2024-04-13 06:13:45.037964
+------------------------------------------------------
+Started: 2024-04-13 08:12:41.103896
+Existing_entries: 196
+Fetching from https://rsshub.app/sspai/index
+append_entries: 0
+Finish: 2024-04-13 08:12:41.295119
