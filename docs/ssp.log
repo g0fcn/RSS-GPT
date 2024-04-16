@@ -4554,3 +4554,12 @@ Existing_entries: 205
 Fetching from https://rsshub.app/sspai/index
 append_entries: 0
 Finish: 2024-04-16 12:25:24.498492
+------------------------------------------------------
+Started: 2024-04-16 14:13:24.314942
+Existing_entries: 205
+Fetching from https://rsshub.app/sspai/index
+Summarization failed, append the original article
+error: Error code: 401 - {'error': {'message': 'Incorrect API key provided: sess-0fU*********************************CSJU. You can find your API key at https://platform.openai.com/account/api-keys.', 'type': 'invalid_request_error', 'param': None, 'code': 'invalid_api_key'}}
+Append: [电子茅台与不驯灵魂：X100VI 漫谈，以及更多的复古相机选择](https://sspai.com/post/87683)
+append_entries: 1
+Finish: 2024-04-16 14:13:24.767094
