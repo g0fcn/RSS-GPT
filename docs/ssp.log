@@ -4623,3 +4623,15 @@ Existing_entries: 208
 Fetching from https://rsshub.app/sspai/index
 append_entries: 0
 Finish: 2024-04-17 08:16:56.140569
+------------------------------------------------------
+Started: 2024-04-17 10:14:51.384384
+Existing_entries: 208
+Fetching from https://rsshub.app/sspai/index
+Summarization failed, append the original article
+error: Error code: 401 - {'error': {'message': 'Incorrect API key provided: sess-0fU*********************************CSJU. You can find your API key at https://platform.openai.com/account/api-keys.', 'type': 'invalid_request_error', 'param': None, 'code': 'invalid_api_key'}}
+Append: [重回记忆中起风的草原：一人一部最喜欢的吉卜力电影](https://sspai.com/post/88085)
+Summarization failed, append the original article
+error: Error code: 401 - {'error': {'message': 'Incorrect API key provided: sess-0fU*********************************CSJU. You can find your API key at https://platform.openai.com/account/api-keys.', 'type': 'invalid_request_error', 'param': None, 'code': 'invalid_api_key'}}
+Append: [这 100 年来，我们如何「听见」声音](https://sspai.com/post/88090)
+append_entries: 2
+Finish: 2024-04-17 10:14:52.201303
