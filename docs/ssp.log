@@ -4806,3 +4806,12 @@ error: Error code: 401 - {'error': {'message': 'Incorrect API key provided: sess
 Append: [做一款创意驱动的手机壳，让每个人都能玩开心](https://sspai.com/post/88188)
 append_entries: 2
 Finish: 2024-04-19 10:15:04.261579
+------------------------------------------------------
+Started: 2024-04-19 12:24:55.300747
+Existing_entries: 219
+Fetching from https://rsshub.app/sspai/index
+Summarization failed, append the original article
+error: Error code: 401 - {'error': {'message': 'Incorrect API key provided: sess-0fU*********************************CSJU. You can find your API key at https://platform.openai.com/account/api-keys.', 'type': 'invalid_request_error', 'param': None, 'code': 'invalid_api_key'}}
+Append: [本周看什么 | 最近值得一看的一大煲作品](https://sspai.com/post/88196)
+append_entries: 1
+Finish: 2024-04-19 12:24:55.755666
