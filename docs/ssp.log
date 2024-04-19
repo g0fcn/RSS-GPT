@@ -4794,3 +4794,15 @@ Existing_entries: 217
 Fetching from https://rsshub.app/sspai/index
 append_entries: 0
 Finish: 2024-04-19 08:17:22.179505
+------------------------------------------------------
+Started: 2024-04-19 10:15:03.586096
+Existing_entries: 217
+Fetching from https://rsshub.app/sspai/index
+Summarization failed, append the original article
+error: Error code: 401 - {'error': {'message': 'Incorrect API key provided: sess-0fU*********************************CSJU. You can find your API key at https://platform.openai.com/account/api-keys.', 'type': 'invalid_request_error', 'param': None, 'code': 'invalid_api_key'}}
+Append: [赛博时代的复古异类：我们为什么还在用这些「旧玩意」](https://sspai.com/post/88186)
+Summarization failed, append the original article
+error: Error code: 401 - {'error': {'message': 'Incorrect API key provided: sess-0fU*********************************CSJU. You can find your API key at https://platform.openai.com/account/api-keys.', 'type': 'invalid_request_error', 'param': None, 'code': 'invalid_api_key'}}
+Append: [做一款创意驱动的手机壳，让每个人都能玩开心](https://sspai.com/post/88188)
+append_entries: 2
+Finish: 2024-04-19 10:15:04.261579
