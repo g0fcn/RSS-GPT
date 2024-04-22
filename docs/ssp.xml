@@ -5,17 +5,154 @@
 <link>https://sspai.com</link>
 
 <item>
+<title>手机号绑定了哪些服务？试试借助短信进行排查</title>
+<link>https://sspai.com/post/88076</link>
+<guid>https://sspai.com/post/88076</guid>
+<content:encoded><![CDATA[
+
+<p>说明：<strong>本文的方案仅适用于 iPhone + Mac 双端用户</strong>。Android机器未经调研，如果能够导出短信数据，那么本文后续对数据的处理和分析流程仍然适用。</p><p>我有两张SIM卡，一张是家乡的号码（下称「旧号」），另一张是到上海工作后新办理的号码（下称「新号」）。有了新号后，便把支付宝、淘宝、微信这些重要的账号都重新绑定了。最近想着旧号一直不用，还总是接到营销电话，不如直接注销了。正好这段时间，「注销手机号就是在出卖自己」这类话题引发了不少网友吐槽「我怎么知道自己的手机号都注册了什么服务？」所以来分享一下自己的解决方案。</p><p>工信部官方推出的「全国互联网账号『一证通查』」服务目前仅能查询到16个相当常见的互联网平台注册情况，覆盖面显然不足。于是，我转而开始思考，我和这些平台之间，有什么存在于本地的数据，能够揭示我们之间的关联吗？</p><p>是短信。当代社会，使用手机号注册平台账号，大概率会收到对方发来的各类短信。之前的工作曾涉及短信营销，一个印象深刻的点是，在给用户批量发短信前，必须先申请「<strong>短信签名</strong>」。一条常见的服务短信长这样：</p><blockquote><p>【少数派】安全提醒：为了保障你的账号安全，我们建议你立即绑定邮箱。当你的手机丢失或手机号不可用时，你可以通过邮箱邮箱二次验证后来更换手机号。立即绑定：https://sspai.com/setting/account</p></blockquote><p>短信开头的 <code>少数派</code> 就是所谓的「短信签名」，作为发信者的身份标识，一般可以被认为是公司名称。各个公司申请到短信资质和签名后，就可以在短信服务提供商购买额度，然后按照模板要求编写短信内容，最后一键发送。服务商则自动在短信内容前添加签名，并以方头括号 <code>【</code> &nbsp;和 <code>】</code> 标记。通过对<a href="https://help.aliyun.com/zh/sms/user-guide/message-template-specifications/" target="_blank">阿里云</a>、<a href="https://cloud.tencent.com/document/product/382/39023" target="_blank">腾讯云</a>、<a href="https://support.huaweicloud.com/productdesc-msgsms/sms_templates.html" target="_blank">华为云</a>、<a href="https://www.volcengine.com/docs/6361/170340" target="_blank">火山引擎</a>这四家的短信服务规范取并集（以扩大短信识别范围），可以得到如下的表格（后文方案会用到短信类型，这里可以特别关注一下）：</p><figure class="table"><table><thead><tr><th>短信类型</th><th>内容规范</th><th>适用场景</th><th>收信人类型</th><th>案例</th></tr></thead><tbody><tr><td>所有类型</td><td>所有类型的短信都需要「<strong>短信签名</strong>」用于标识发送方属性，在短信内容中体现为短信开头的「<strong>【某某公司】</strong>」</td><td>不涉及</td><td>不涉及</td><td>见下</td></tr><tr><td>验证码短信</td><td>短信内容必须包含「验证码、注册码、校验码、动态码、动态密码、CODE」中的一个</td><td>需要安全验证的操作</td><td>发起注册、登录等操作的用户</td><td>【某某音乐】1234 您的某某音乐验证码，有效时间为10分钟，请尽快验证</td></tr><tr><td>通知类短信</td><td>禁止发送营销推广类内容和链接</td><td>系统相关信息，例如服务升级、服务开通、价格调整、 订单确认、物流动态、消费确认等</td><td>注册用户</td><td>【某某餐厅】您的会员卡1234在某某分店消费，剩余卡值54.32，积分余额46</td></tr><tr><td>营销类短信</td><td>短信末尾必须携带退订方式，根据最新规定目前仅支持「拒收请回复R」</td><td>新品宣传、会员关怀、商品促销、活动邀请、跨境营销等</td><td>没有明确限制</td><td>【某某旗舰店】新势力周囤货啦！全店叠加满减满300减90！爆款下单赠惊喜好礼，冲！ s.tb.cn/abcdefg 拒收请回复R</td></tr></tbody></table></figure><p>于是，一个自然的想法是，我们可以逆向利用这些短信中的签名，来辅助判断自己的手机号绑定了哪些服务。<strong>只要导出这些短信，用正则表达式提取签名，按照出现频率倒序排列，一个个打钩确认就可以了。</strong></p><p>这个方案需要同时使用iPhone和Mac，并在iPhone上开启「短信转发」功能。在「设置 - 信息 - 短信转发」中，打开Mac设备的开关即可；读者也可参考<a href="https://support.apple.com/zh-cn/102545" target="_blank">Apple官方支持文档</a>进行操作。等待一段时间，让历史短信同步到Mac上，完成之后就可以尝试使用诸如<a href="https://tableplus.com/" target="_blank">TablePlus</a>之类的数据库管理工具访问位于 <code>/Users/yourusername/Library/Messages/chat.db</code> 路径的数据库了。这里建议将 <code>chat.db</code> 复制到一个普通权限的文件夹下，否则对数据库进行操作可能会被请求授予「完全磁盘访问权限」，同时可以避免误操作可能导致的其他问题。</p><figure class="image ss-img-wrapper"><img src="https://cdn.sspai.com/2024/04/17/9cc1f36bf5ce3b2cff5887c47bd5ed40.JPEG?imageView2/2/w/1120/q/90/interlace/1/ignore-error/1" /></figure><p>另外，iOS 17增加了一项功能新功能，可以自动删除使用过的验证码短信。如果你最近有注销手机号的需求，且想使用本文的方案，不妨先把这个功能关掉一段时间，以积累更多短信数据。设置路径为「设置 - 密码 - 密码选项 」，关闭「使用后删除」即可。</p><figure class="image ss-img-wrapper"><img src="https://cdn.sspai.com/2024/04/17/f182a747ae26274436e041e10d0d879f.JPEG?imageView2/2/w/1120/q/90/interlace/1/ignore-error/1" /></figure><h2>短信导出，有没有现成的解决方案？</h2><p>本着「绝不重复造轮子」的原则，我确实找到了两个解决方案。</p><p>一是iMazing的短信备份功能，可以导出为Excel表格。国内经销商给出的最低价是188元，我没有使用此软件的需求，并不愿意单纯为了一次短信导出付出这个价格。同时，它导出的短信表格并没有区分手机号，这对我来说大大增加了排查的工作量，遂放弃。另外，我大约有15K+条短信，从iPhone备份到Mac上耗费了将近3个小时，这个速度也让我有点不能接受。</p><p>另一个是用Rust语言编写的开源项目<a href="https://github.com/ReagentX/imessage-exporter">imessage-exporter</a>，免费且导出速度极快，但同样没有区分手机号。我给作者提了issue，已经被加入下一版本的计划中。读者如果不想自己实现，可以等等作者发新版。可能是因为直接读取已经存在于Mac上的数据库（而不是经由iPhone备份的方式），同样是15K+短信，导出仅消耗了几秒钟。</p><p>如果你只有一个手机号，并且已经是iMazing用户或者有一些技术背景，那这些其实是够用的。但对于双卡双待的用户，无法区分短信的收信号码，情况就有些复杂了。</p><h2>粗糙的MVP：先解决核心问题</h2><p>一开始，我想修改一下前文中提的开源项目，毕竟只要添加数据库的一个字段就可以了。但我对Rust语言一无所知，即便有AI的加持，修改一个完整的项目也感到十分捉襟见肘，不知从何下手。折腾一番之后，最终还是开始自己造轮子了。</p><p>项目的核心问题是，<strong>我们的手机号到底注册/绑定了哪些服务？</strong>那么解决方案至少要把手机号、短信签名、频次这三列导出来。</p><h3>先看一看，短信数据库长什么样？</h3><p>经过一些探索，我整理出了 <code>chat.db</code> 中与我们问题相关的表格和字段。并且，同步到Mac的短信通过 <code>destination_caller_id</code> 这一字段保留了收信号码，这意味着我们的解决方案有了一些眉目。</p><figure class="table"><table><thead><tr><th>表格名称</th><th>内容</th></tr></thead><tbody><tr><td>chat</td><td>记录每个对话的属性，例如对话ID、发信人号码、最后一次的联络时间等。</td></tr><tr><td>message</td><td>记录每条信息的详细内容和属性，例如短信ID、短信富文本内容、收信号码、收发时间、是否被过滤等。</td></tr><tr><td>chat_message_join</td><td>记录对话ID和信息ID的对应关系，一个对话可能包含多条信息。</td></tr></tbody></table></figure><figure class="image ss-img-wrapper"><img src="https://cdn.sspai.com/2024/04/17/110bd91e55f51ac8d80347cd24759ed3.png?imageView2/2/w/1120/q/90/interlace/1/ignore-error/1" /></figure><p>挑选出项目相关字段后，这三张表格关系如图所示。一个 <code>chat</code> (对话）可能包含多条 <code>message</code> (s) (信息），两者的对应关系，被记录于 <code>chat_message_join</code> 这张表里。一些需要解释的字段如下：</p><ul><li><a href="https://stackoverflow.com/questions/75330393/how-can-i-read-the-attributedbody-column-in-macos-imessage-database" target="_blank">自macOS Ventura某次更新后</a>，短信文本不再直接存储于 <code>text</code> 列，而是以特殊格式放到了<code>attributedBody</code> 里。<code>attributedBody</code> 是<code>blob</code> (Big Large Object) 类型，存储了包含短信文本在内的各项数据。由十六进制转化为文本后，在一堆乱码中勉强看到了短信内容和 <code>NSAttributedString</code>、<code>streamtyped</code>等字眼，搜索资料后了解到与iOS和Swift有关。这方面我并不了解，还好搜到了一个开源项目（<a href="https://github.com/dgelessus/python-typedstream">python-typedstream</a>），可以通过Python直接读取并抽取其中的文本值。</li><li><code>date</code> 是起始于2001年01月01日的时间戳（不同于默认的1970年01月01日），需要特别转换一下。</li><li><code>service</code> 指短信的服务类型，亦即SMS或是iMessage，这里我们只需要SMS（因为iMessage是邮件地址发来的信息，不是我们需要的服务短信）。</li><li><code>is_from_me</code> 代表「是否为本机发出的信息」，这里只需要收到的短信，所以加上一个过滤条件 <code>is_from_me==0</code> 。</li><li><code>destination_caller_id</code> 就是我们需要的「收信号码」字段。</li><li><code>chat_identifier</code> 是发信号码。</li></ul><h3>把短信数据拿出来</h3><p>此处使用Python语言，在Terminal中运行 <code>pip install pytypedstream</code> 以安装上文提到的包。完成后，我们先定义两个函数，分别用来从 <code>attributedBody</code> 中提取短信文本和转换时间戳。</p><pre class="language-python"><code># 用于从blob数据类型中抽取短信文本内容
+import typedstream
+def get_value_from_bytesobj(hex_bytes):
+    try:
+        ts_obj = typedstream.unarchive_from_data(hex_bytes)
+        return ts_obj.contents[0].value.value
+    except Exception as e:
+        return None</code></pre><pre class="language-python"><code># 用于将时间戳转换为人类可读的日期时间格式
+from datetime import datetime, timedelta
+# iOS messages的timestamp开始于2001-01-01，且需要转化为北京时间
+def timestamp_converting(timestamp, custom_epoch = datetime(2001, 1, 1)):
+    try:
+        timestamp_seconds = timestamp / 1e9
+        resulting_date = custom_epoch + timedelta(seconds=timestamp_seconds) + timedelta(hours=8)
+        return resulting_date.strftime('%Y-%m-%dT%H:%M:%S.%f')[:-3]
+    except Exception as e:
+        return None</code></pre><p>接下来我们连接到数据库 <code>chat.db</code>，取出需要的数据，并且应用刚才定义的两个函数，对数据做初步处理，并写入Excel表格。</p><pre class="language-python"><code>import sqlite3
+import pandas as pd
+
+# 建立数据库链接，取数据
+database_path = 'path/to/chat.db'
+connection = sqlite3.connect(database_path)
+
+query = '''SELECT a.ROWID AS message_id, c.ROWID AS chat_id, c.chat_identifier, a.attributedbody, a.date, a.destination_caller_id FROM message AS a
+LEFT OUTER JOIN chat_message_join AS b ON a.rowid = b.message_id
+LEFT OUTER JOIN chat AS c ON b.chat_id = c.rowid
+WHERE a.is_from_me = 0 AND a.service = "SMS";'''
+
+df = pd.read_sql_query(query, connection)
+connection.close()
+
+# 初步处理数据，抽取短信内容、转换时间戳，排除空文本短信，写入Excel表格
+df['sms_text'] = df['attributedBody'].apply(get_value_from_bytesobj)
+df['sms_date'] = df['date'].apply(timestamp_converting).apply(lambda x: pd.to_datetime(x, format='%Y-%m-%dT%H:%M:%S.%f'))
+# 去除没有文本内容的短信
+df = df[~df['sms_text'].isnull()]
+df = df[['message_id', 'chat_identifier', 'destination_caller_id', 'sms_date', 'sms_text']].sort_values(by = 'sms_date', ascending = False)
+df.to_excel("sms_content.xlsx",index=None)</code></pre><p>&nbsp;</p><p>这里解释一下为何选择较为「笨重」的 <code>.xlsx</code> 格式存储，而不选择 <code>.csv</code>？因为不确定短信文本内容中是否包含了和分隔符（英文逗号 <code>,</code> ）一样的符号，导致后续读数时错列。同时数据量也不大， 如果数据量大，可以尝试用 <code>arrow</code> 包写 <code>.parquet</code> 文件。</p><p>最终，我们可以得到数据字典结构如下的表格，并进行下一步分析。</p><figure class="table"><table><thead><tr><th>字段名称</th><th>数据类型</th><th>含义及备注</th><th>样例</th></tr></thead><tbody><tr><td>message_id</td><td>integer</td><td>短信ID</td><td>5337</td></tr><tr><td>chat_identifier</td><td>text</td><td>发信人号码</td><td>106905109757920</td></tr><tr><td>destination_caller_id</td><td>text</td><td>本机号码，可能不止一个（双卡双待）</td><td>+8613912345678</td></tr><tr><td>sms_date</td><td>datetime</td><td>收信时间</td><td>2024-04-01 12:34:56</td></tr><tr><td>sms_text</td><td>text</td><td>从 <code>attributedBody</code> 字段中提取的短信文本内容</td><td>【某某音乐】1234 是您某某音乐的验证码，有效时间为10分钟，请尽快验证</td></tr></tbody></table></figure><h3>清洗数据，得到检查清单</h3><p>注：<strong>从这里开始，编程语言变成了R。</strong>在解决个人生活问题的项目上，我的编程习惯比较随意，什么语言方便用什么。我在本文最后提供了一个一键导出的应用，供不太熟悉R语言读者使用。另外，少数派编辑器的代码块模块还不支持R语言，所以语言类型我选择了纯文本，没有高亮。</p><pre class="language-null"><code>library(data.table)
+library(tidyverse)
+library(readxl)
+library(writexl)
+
+# 读取刚才保存的短信数据表格
+sms_df = read_xlsx("sms_content.xlsx") %&gt;% 
+  setDT()
+
+# 这里去除了短信首尾的空白符号和占位符，并且将所有英文符号转为小写
+sms_df[, sms_text := sms_text %&gt;% str_squish() %&gt;% str_remove_all(., "\uFFFC") %&gt;% str_to_lower()]
+
+# 此处为了排除一些无关联的IDFA而进行过滤
+# 请将"new"和"old"替换为自己的手机号
+sms_df = sms_df[destination_caller_id %chin% c("new", "old")]</code></pre><p>首先，我们需要将手机号发来的日常短信过滤掉。手机号是11位，在 <code>chat_identifier</code> 字段中会增加前缀 <code>+86</code>。在查阅<a href="https://baike.baidu.com/item/%E6%89%8B%E6%9C%BA%E5%8F%B7%E7%A0%81/1417348" target="_blank">资料</a>获得手机号段特征后，我们可以通过以下正则表达式将其过滤（关于正则表达式可以参考<a href="https://deerchao.cn/tutorials/regex/regex.htm" target="_blank">regex101</a>和<a href="https://sspai.com/post/60650" target="_blank">少数派这篇文章</a>，这里不再赘述）。</p><pre class="language-null"><code>phone_number_pattern = "^\\+86((135|136|137|138|139|150|151|152|157|158|159|178|182|183|184|187|188|195|197|198|130|131|132|145|155|156|166|175|176|185|186|196|133|149|153|173|177|180|181|189|190|191|193|199|192|162|165|167|170|171)[0-9]{8}|134[0-8]{8})$"
+
+sms_df = sms_df[!str_detect(chat_identifier, phone_number_pattern)]</code></pre><p>然后，把 <code>【】</code> 内部的文本抽取出来，选择旧号相关的短信签名，按照出现频率倒序排列，写入Excel文件，一一去排查即可。注意，这里我们的正则表达式匹配了位于<strong>开头或结尾</strong>的方头括号，因为有些公司会把短信签名放在末尾（比如交通银行），也许是有自己的独立渠道，不需要受短信服务商模板的约束。</p><p>此外，还需将首尾均未出现签名的短信过滤掉，除了由一些公共机构、政府部门下发的公益短信外，全部都是售假、赌博、色情类内容（不清楚它们是如何绕过审核系统下发的）。</p><pre class="language-null"><code># 匹配短信开头和末尾的签名
+sms_df[, `:=`(sms_sign_start = sms_text %&gt;% str_extract(., "^【(.*?)】", group = 1), sms_sign_end = sms_text %&gt;% str_extract(., "【([^】]*)】$", group = 1))]
+
+# 将首尾均未出现签名的短信过滤掉
+sms_df = sms_df[!(is.na(sms_sign_start) &amp; is.na(sms_sign_end))]
+
+# 将首尾签名两列数据合并到一列中
+sms_df = sms_df %&gt;%
+  pivot_longer(
+    cols = starts_with("sms_sign"),
+    values_to = "sms_sign",
+    values_drop_na = T
+  ) %&gt;% 
+  setDT()
+
+# 按照出现频率从高到低对短信签名进行排序，并写入文件
+# 这里请将"old"替换为你的手机号  
+sms_sign_cnt = sms_sign_cnt[destination_caller_id == "old", .N, .(sms_sign)] %&gt;% 
+  setorder(-N)
+sms_sign_cnt %&gt;% 
+  write_xlsx(., "path/to/file.xlsx")</code></pre><p>我的旧号中有368个短信签名，出现频率前五的签名如下（出现频次进行了数据脱敏），包含了当时仍属于网易的「网易考拉」，也许算得上是一滴时代的眼泪了。不过这么多签名，排查起来工作量不少，能不能简化一点呢？</p><figure class="table"><table><thead><tr><th>sms_sign</th><th>N（出现频次）</th></tr></thead><tbody><tr><td>交通银行</td><td>402</td></tr><tr><td>中国移动</td><td>287</td></tr><tr><td>网易</td><td>109</td></tr><tr><td>网易考拉</td><td>98</td></tr><tr><td>招商银行</td><td>72</td></tr></tbody></table></figure><p>一个简单的思路是，将低频签名过滤掉。让我们先看一下数据的分位点。</p><pre class="language-null"><code>sms_sign_cnt[, quantile(N)]
+sms_sign_cnt[N &gt;= quantile(N, 0.75)]</code></pre><figure class="table"><table><thead><tr><th>0%</th><th>25%</th><th>50%</th><th>75%</th><th>100%</th></tr></thead><tbody><tr><td>1</td><td>1</td><td>1</td><td>4</td><td>402</td></tr></tbody></table></figure><p>有超过一半的短信签名只出现过1次，前25%的短信签名出现次数在4次及以上。如果我们以「至少出现4次」为基准进行切割，需要排查的签名就只剩下了109个。快刀斩乱麻，直接减少了70%的工作量——但会不会有点担心，那些低频签名中偏偏有我们很看重的呢？</p><h2>精细化分析：减少排查工作量</h2><p>从这里开始，项目的目标从「找到所有注册/绑定的服务」变成了<strong>「找到值得被排查的服务」</strong>。因此，我们需要增加一些数据分析的维度，尽量排除不需要检查的签名。</p><p>此后都是基于作者个人短信数据情况而进行的非标准化分析，主要是为了提供一些解决思路，读者如果感兴趣，可以参考自行实现。</p><h3>Step1 排除移动服务商和公共机构</h3><p>大体扫一眼短信内容，我们会发现不少短信来自于移动服务商：话费余额提醒、宽带推广、流量包优惠等等。手机号和移动服务商天然绑定，注销手机号自然不需要考虑它们。以我的移动号码为例，所有以10086和10085开头的号段都是移动下发各类通知的号码，可以将其直接过滤。同时，再增加一个判断条件，短信文本中出现了类似「中国移动」、「上海移动」、「江苏移动」等模式的签名也会被过滤掉。</p><p>另外，有些公共机构的公益短信（例如天气预警）也会通过10086的端口下发，可以将其一并过滤。</p><pre class="language-null"><code>sms_df[destination_caller_id == "old" &amp; (str_detect(chat_identifier, "^1008[56]") | str_detect(sms_text, "(中国|江苏|上海)移动")), .N, sms_sign] %&gt;% 
+  arrange(., desc(N)) %&gt;% {
+    print(.)
+  } -&gt; plot_stats_mobile_operators</code></pre><figure class="table"><table><thead><tr><th>sms_sign</th><th>N</th></tr></thead><tbody><tr><td>中国移动</td><td>287</td></tr><tr><td>中国移动心级服务，让爱连接</td><td>73</td></tr><tr><td>余额不足提醒</td><td>55</td></tr><tr><td>流量提醒</td><td>42</td></tr><tr><td>江苏省文旅厅</td><td>13</td></tr></tbody></table></figure><pre class="language-null"><code># 这里anti_join()函数的功能是从X中排除出现在Y的内容
+sms_sign_cnt_step1 = sms_sign_cnt %&gt;% 
+  anti_join(., plot_stats_mobile_operators, by = join_by(sms_sign))
+
+plot_stats_step1 = nrow(sms_sign_cnt_step1)</code></pre><p>这一步排查出了87个移动运营商和公共机构签名，总排查量还剩281个，占比76%。</p><h3>Step2 排除电商旗舰店</h3><p>每逢各类电商活动，商家们的推广信息就纷至沓来。我们的号码和电商平台绑定，不需要额外对这些旗舰店进行解绑操作。因此，包含「旗舰店」字样的短信签名可以被过滤掉。</p><pre class="language-null"><code>sms_df[destination_caller_id == "old" &amp; str_detect(sms_sign, "旗舰店"), .N, sms_sign] %&gt;% {
+  print(.)
+} -&gt; plot_stats_ecommerce
+
+sms_sign_cnt_step2 = sms_sign_cnt_step1 %&gt;% 
+  anti_join(., plot_stats_ecommerce, by = join_by(sms_sign))
+
+plot_stats_step2 = nrow(sms_sign_cnt_step2)</code></pre><p>这一步排查出了14个电商商家签名，总排查量还剩267个，占比73%。</p><h3>Step3 排除已经解绑过的服务</h3><p>因为我有两个手机号，且一部分账号已经重新绑定到新号上，所以短信签名在新旧号的活跃状态就成了一个额外的分析维度。例如，如果旧号自某天（记为T）起再也没有收到过某个短信签名，而新号第一次收到此签名的短信在T之后，就可以认为我已经将此签名的服务绑定到新号上了，从而在检查列表中将其排除。</p><figure class="table"><table><thead><tr><th>签名新号状态</th><th>签名旧号状态</th><th>含义</th><th>检查列表策略</th></tr></thead><tbody><tr><td>活跃</td><td>活跃</td><td>两个号码混用</td><td>保留此签名</td></tr><tr><td>活跃</td><td>不活跃</td><td>已迁移到新号</td><td>过滤此签名</td></tr><tr><td>不活跃</td><td>活跃</td><td>未迁移到新号</td><td>保留此签名</td></tr><tr><td>不活跃</td><td>不活跃</td><td>不存在此情况</td><td>不涉及</td></tr></tbody></table></figure><p>我们利用全部数据集（包含新号和旧号的短信）构建一个表格，对每一个短信签名，都列出以下四个属性：</p><ul><li>旧号最远接收的日期 <code>min_date_old</code></li><li>旧号最近接收的日期 <code>max_date_old</code></li><li>新号最远接受的日期 <code>min_date_new</code></li><li>新号最近接收的日期 <code>max_date_new</code></li></ul><p>基于对日期大小的比较，可以判断短信签名在新旧号的活跃状态（过去的日期距离当下越远，则在数值上越小）。</p><pre class="language-null"><code>sms_minmax_date = sms_df[, .(min_date = min(sms_date), max_date = max(sms_date)), .(destination_caller_id, sms_sign)]
+
+sms_minmax_date = sms_minmax_date %&gt;% 
+  pivot_wider(., names_from = destination_caller_id, values_from = c(min_date, max_date)) %&gt;% 
+  setDT()</code></pre><p>生成的表格字段如下：</p><figure class="table"><table><thead><tr><th>sms_sign</th><th>min_date_new</th><th>min_date_old</th><th>max_date_new</th><th>max_date_old</th></tr></thead><tbody><tr><td>某服务</td><td>2020-06-25 18:17:36</td><td>2018-11-18 21:54:34</td><td>2021-07-05 17:54:16</td><td>2019-10-15 12:12:46</td></tr></tbody></table></figure><figure class="image ss-img-wrapper"><img src="https://cdn.sspai.com/2024/04/17/3f41d775d7ceca90e29785d8bb46ef0e.png?imageView2/2/w/1120/q/90/interlace/1/ignore-error/1" /><figcaption>「新号活跃、旧号不活跃」模式时间关系示意</figcaption></figure><p>以 <code>min_date_new &gt; max_date_old</code> 为过滤条件，找到满足「新号活跃、旧号不活跃」模式的短信签名，可以视作已经解绑旧号并重新绑定了新号。</p><pre class="language-null"><code>sms_minmax_date[min_date_new &gt; max_date_old] %&gt;% {
+  print(.)
+} -&gt; plot_stats_shifted_to_new
+
+sms_sign_cnt_step3 = sms_sign_cnt_step2 %&gt;% 
+  anti_join(., plot_stats_shifted_to_new, by = join_by(sms_sign))
+
+plot_stats_step3 = nrow(sms_sign_cnt_step3)</code></pre><p>在旧号的短信中，我们找到了81个满足指定模式的签名，总排查量还有193个，占比52%。注意，本小节是对整个旧号数据集进行操作，前面已经过滤的签名仍然有可能重复出现在这里，所以数值上并不是直接相减的关系，而是排除（亦即 <code>anti_join()</code> ）后计数。</p><p>还有一种情况是新旧号在混用，例如我在B站和当当网都有两个账号，可能一个是通过微信登录直接授予了旧号，另一个是用手机验证码登录了新号，导致一会新号收到短信，一会旧号收到短信。这种模式体现在时间上的特征为，新旧号的时间段是相互交错的。这类签名也需要作为排查对象，先存下来，在下一步分析时使用。</p><figure class="image ss-img-wrapper"><img src="https://cdn.sspai.com/2024/04/17/8000da9b4e3df8b6ab16b6cbd5064d59.png?imageView2/2/w/1120/q/90/interlace/1/ignore-error/1" /><figcaption>「新旧号混用」模式的时间关系示意</figcaption></figure><pre class="language-null"><code>sms_minmax_date[(max_date_old &gt; max_date_new &amp; max_date_new &gt; min_date_old) | (max_date_new &gt; max_date_old &amp; max_date_old &gt; min_date_new)] %&gt;% {
+  print(.)
+  } -&gt; plot_stats_mixed</code></pre><h3>Step4 排除只发过营销类短信的服务</h3><p>在文章开头，我们提到了服务短信的三种分类。细想一下，「验证码短信」涉及到注册、登录等需要安全验证的场景，频率低但重要性高；「通知类短信」则标识着用户在此公司有相关业务，频率越高则关联程度越高，主动操作的可能性就越高，注销手机号的影响也就越大；「营销类短信」则不是用户主动发起的，也没有强制规定不能发送给未注册的用户，无论其频率如何，重要性都是最低。</p><p>因此，那些<strong>只</strong>出现在营销类短信的签名，可以认为是获客类操作，反证了我们的手机号并没有注册过它们的服务。</p><p>我们明确知道验证码和营销类短信的模板要求，因此可以用正则表达式为短信打上标签。但是通知类短信没有明显的文本规律，为了扩大安全边界，我们可以将不满足验证码和营销类模式的短信都归为通知类短信。</p><p>另外，由于营销类短信的拒收话术有过更新，所以为了定位此类历史短信，对应的正则表达式也扩大了识别范围。</p><figure class="image ss-img-wrapper"><img src="https://cdn.sspai.com/2024/04/18/8959529b650a6a11cf6693820c8b90b6.png?imageView2/2/w/1120/q/90/interlace/1/ignore-error/1" /><figcaption>三类短信的文本特征</figcaption></figure><pre class="language-null"><code># 这里的OTP代表One Time Password
+verification_code_pattern = "验证码|注册码|校验码|动态码|动态密码|动态验证码|code|otp" 
+promotion_pattern = "拒收|退订|td|回[a-z]+退?"
+
+# 通过正则表达式为短信打上类型标签
+sms_df[, sms_category :=
+               ifelse(
+                 str_detect(sms_text, verification_code_pattern),
+                 "verification",
+                 ifelse(
+                   str_detect(sms_text, promotion_pattern),
+                   "promotion",
+                   "notification"
+                 )
+               )
+]</code></pre><p>接下来，将旧号中只发送过营销类短信的签名找出来。</p><pre class="language-null"><code>sms_df[destination_caller_id == "old", .N, .(sms_sign, sms_category)] %&gt;% 
+  pivot_wider(., names_from = "sms_category", values_from = "N", values_fill = 0) %&gt;% 
+  filter(., notification == 0 &amp; verification == 0) %&gt;%
+  as.data.table() %&gt;% {
+    print(.)
+  } -&gt; plot_stats_only_promotion</code></pre><figure class="image ss-img-wrapper"><img src="https://cdn.sspai.com/2024/04/17/4c8053d8a4b542aedb26a6be1f50e2e5.png?imageView2/2/w/1120/q/90/interlace/1/ignore-error/1" /></figure><p>这里我们需要特别注意一下，「旧号仅发送过营销短信的签名」也有可能后续给新号发了验证码和通知类短信（存在新旧号混用的情况），所以我们要把这个待过滤列表中「新旧号混用的签名」先排除掉，剩下的才是应该被过滤的签名。</p><pre class="language-null"><code>sms_sign_cnt_step4 = sms_sign_cnt_step3 %&gt;% 
+  anti_join(
+    plot_stats_only_promotion %&gt;% 
+      anti_join(., plot_stats_mixed, by = join_by(sms_sign)),
+    by = join_by(sms_sign)
+  )
+
+plot_stats_step4 = nrow(sms_sign_cnt_step4)</code></pre><p>这一步我们在旧号所有短信中确定了110个仅发送过营销类短信的服务，大致是一些借贷、网游类我未使用过的服务。</p><h3>精细化分析小结</h3><figure class="table"><table><thead><tr><th>步骤</th><th>剩余短信签名数量</th><th>每一步排除的签名数量（去重）</th></tr></thead><tbody><tr><td>开始</td><td>368</td><td>0</td></tr><tr><td>Step1 过滤移动运营商</td><td>281</td><td>87</td></tr><tr><td>Step2 过滤旗舰店</td><td>267</td><td>14</td></tr><tr><td>Step3 过滤已迁移</td><td>193</td><td>74</td></tr><tr><td>Step4 过滤纯营销</td><td>127</td><td>66</td></tr><tr><td>结束</td><td>127</td><td>241</td></tr></tbody></table></figure><p>最终，待排查的短信签名从368个降低到了127个，减少了65%的排查工作。相比较于以「出现频率&gt;=4」为标准快刀斩乱麻砍掉约同等工作量（70%）的方式，后续的分析复杂了一些，但是对结果准确度的信心却大大提升了。</p><figure class="image ss-img-wrapper"><img src="https://cdn.sspai.com/2024/04/17/eed2c77d290accd390a56bb799705e37.png?imageView2/2/w/1120/q/90/interlace/1/ignore-error/1" /><figcaption>经过四个步骤的清洗，排查工作量降低至35%</figcaption></figure><h2>一键导出工具下载</h2><p>链接：https://pan.quark.cn/s/bfe088195639</p><p>提取码：wHV6</p><p>这个工具用Python的 <code>tkinter</code> 包做了一个十分简陋的GUI，并使用 <code>PyInstaller</code> 进行了打包。我对非Web应用程序的开发十分不熟悉，所以这个工具仅实现了基本功能：选择数据库、判断数据库是否存在指定的表格和字段、选择保存路径、抽取和输出数据为Excel表格。同时，因为是在本文内放出的下载链接，默认用户都浏览过本文，所以界面上没有提供其他辅助信息，这可能会让从其他渠道接触的用户一头雾水。</p><p>如果读者无法打开此工具，可能需要到「设置 - 安全和隐私」中选择允许本应用运行。另外，如果打开了，却发现它好像闪退了，请稍微等待一会儿，它似乎在解压自己到某个临时文件夹，解压好了这个窗口就会弹出来。或者到活动监视器中杀掉进程后重试。</p><figure class="image ss-img-wrapper"><img src="https://cdn.sspai.com/2024/04/18/0675f5fb89f52b562eb424e4de195e9f.jpg?imageView2/2/w/1120/q/90/interlace/1/ignore-error/1" /></figure><p>如果数据库通过检验，将会输出两个 <code>.xlsx</code> 文件：</p><ol><li>历史收到的所有SMS类型短信（相当于一次短信导出）。</li><li>分表单存储的「运营商和公共机构签名」、「电商旗舰店签名」、「分短信类别统计过频次的其他签名」（已排除前两者），均有收信号码、短信签名和频次标注。</li></ol><h2>这个产品后续会有什么改进吗？</h2><p>一开始我想把它做成一次性买断产品，价格大概在3-6元。毕竟，谁不希望拥有属于自己且还能赚钱的产品呢？网络上的讨论确实让我意识到，这个需求虽然是超低频的一次性需求，但也真实存在，并且我的解决方案确实告诉了用户「你的手机号到底在哪些平台注册过」，理论上存在PMF。</p><p>但涉及到对短信内容的分析，有多少用户会允许一个不知名开发者的小工具去访问自己的敏感数据呢？即便我声明了这个工具不会上传用户数据、纯在本地分析、可以断网使用，想必还是很难打消用户的疑虑。尤其是还没有申请签名，可能被MacOS的安全策略阻拦，而直接选择系统路径的 <code>chat.db</code> 又会被提示需要「授予完全磁盘访问权限」，总归令人不安。其实换我是用户，我也不太会愿意使用这个工具。</p><p>另外，虽然尽可能列出了排查对象，也尽可能减少了排查工作量，但毕竟不能帮助用户一键解绑。所有绑定的服务，都需要用户手动一个个去寻找解绑方式。因此，这个工具的竞争对手，也许并不是其他相同思路、界面更美观、用户体验更好、开发者更知名的同类产品，而是用户面对上百个待排查项目最终冒出的「算了好烦，还是办个8块钱保号套餐吧」想法。</p><p>但不管怎么说，我也算是有了第一款属于自己的产品了，我会尝试在小红书上营销一下此产品，看看市场反馈。后续还有其他项目需要用React开发，所以也想尝试用React + Electron + Python的方式把它完善一下，当做练习作品，至少UI不能看起来像诈骗软件（笑）。</p>
+]]></content:encoded>
+<pubDate>Fri, 19 Apr 2024 06:50:13 GMT</pubDate>
+<pubDate>Fri, 19 Apr 2024 06:50:13 GMT</pubDate>
+</item>
+
+<item>
 <title>派早报：特斯拉因踏板缺陷召回全部 Cybertruck</title>
 <link>https://sspai.com/post/88234</link>
 <guid>https://sspai.com/post/88234</guid>
 <content:encoded><![CDATA[
-
 <h2>你可能错过的新鲜事</h2><h3>特斯拉因踏板缺陷召回全部 Cybertruck</h3><p>据美国全国高速公路交通安全委员会 (NHTSA) 网站公布的<a href="https://www.nhtsa.gov/vehicle/2024/TESLA/CYBERTRUCK#recalls">自愿召回计划</a>，特斯拉将召回目前已售出的全部 3878 辆 Cybertruck，以便维修或更换有缺陷的油门踏板。这是近期遇到销售下滑、股价大跌、宣布裁员和高管离职之际，特斯拉所面临的又一问题。</p><p>NHTSA 公布的信息显示，Cybertruck 的装配过程在未经批准的情况下使用了肥皂作为润滑剂，其残留部分降低了踏板的牢固程度。结果，踏板在使用时可能脱落并被卡住，导致车辆意外加速，并增加撞车风险。特斯拉于 3 月 31 日首次收到客户关于油门踏板事故的报告，但尚未接到因此产生的撞车、受伤或死亡事故报告。</p><p>截至上周三，所有在产的 Cybertruck 都安装了新的油门踏板组件。已运到交付中心的 Cybertruck 将在维修后交付。截至上周五，Cybertruck 尚未恢复交付。今年早些时候，特斯拉已经召回了一次包括 Cybertruck 在内所有旗下车辆的软件，原因为警告指示灯的字体太小。</p><h3>多地实施微短剧新规，上线须经分类审核备案</h3><p>据澎湃新闻<a href="https://www.thepaper.cn/detail/27061262">报道</a>，根据其记者向多地广电主管部门了解的情况，此前网络上出现的《关于微短剧备案最新工作提示》确实已在全国范围多个省市实施。</p><p>根据《提示》，广电总局要求各平台于 5 月 31 日前，将未经备案上线播出的微短剧剧目信息报送属地省级广电主管部门；6 月 1 日起，未经审核备案的微短剧不得上网传播。《提示》还规定按照总投资额度标准，对微短剧采取分类分层审核：100 万元以上的「重点微短剧」归广电总局管理，30 万元到 100 万元之间的「普通微短剧」归省级广电部门管理，30 万元以下的「其他微短剧」归平台管理。</p><p>根据接受采访的地方广电局工作人员说法，在全国多个省市，针对微短剧的「网络视听节目备案系统」已经投入使用。备案主体公司需持有《广播电视节目制作经营许可证》，在属地广播电视局注册备案账号，按照《提示》的分类标准申报审核。网络微短剧需获得《网络剧片发行许可证》或节目登记备案号才能上线播出。</p><h3>比特币发生第四次采矿回报减半</h3><p>4 月 20 日零时（UTC）左右，<a href="https://mempool.space/block/0000000000000000000320283a032748cef8227873ff4872689bf23f1cda83a5">第 84 万个比特币区块</a>被「挖出」，这标志着每四年一次的「减半」节点再次到来。「减半」是比特币算法中控制供给的内置机制，其定期将「矿工」可获取的比特币数量减半。本次「减半」后，平均每 10 分钟释放的比特币数量从 6.25 枚减半至 3.125 枚。</p><p>比特币的创造者中本聪将比特币的供应上限设定为 2100 万枚，目前已有超过 90% 的比特币被开采。一般认为，「减半」会进一步限制比特币的供应，推动比特币价格上涨。又因为美国于年初首次批准比特币现货 ETF（交易所交易基金），对比特币的强劲需求已推动比特币价格在最近几周创下新高；「矿工」每天从新挖币中赚取的利润超过 7000 万美元。</p><p>据《华尔街日报》<a href="https://www.wsj.com/finance/currencies/bitcoin-halving-btc-miners-money-919e9276">报道</a>，尽管比特币价格反弹，因出于对「减半」事件的担忧，比特币挖矿公司的股价今年而大幅下跌，因为小型「矿工」可能无力承担持续提高的挖矿机房和电力成本。为了应对危机，一些挖矿公司在寻找机会向 AI 企业出售自己的技术，而另一些则考虑以折扣价收购规模较小的竞争对手和旧电脑。</p><h3>十部门发文进一步支持境外机构投资境内科技型企业</h3><p>据新华社报道，4 月 19 日，商务部等十部门近日联合印发的《<a href="http://images.mofcom.gov.cn/www/202404/20240419205121668.pdf">关于进一步支持境外机构投资境内科技型企业的若干政策措施</a>》对外发布。商务部财务司负责人表示，科技型企业面临广阔发展机遇，对更大力度、更多层次、更宽渠道融资支持的诉求也进一步上升。《措施》聚焦境外机构业务特点和境内科技型企业发展需求，提出优化管理服务、加大融资支持、加强交流合作、完善退出机制 4 方面 16 条具体措施，包括：</p><ul><li>优化管理服务：依法高效审批合格境外机构投资者（QFII）及人民币合格境外机构投资者（RQFII）资格申请；支持境外机构通过合格境外有限合伙人（QFLP）方式投资境内科技型企业；境外机构在境内设立创业投资基金与内资创业投资基金享受同等待遇。</li><li>加大融资支持：支持符合条件的境外机构在华发行人民币债券，并投入科技领域；全国推广跨境融资便利化试点，将初创期科技型企业纳入试点主体范围，鼓励符合条件的企业在额度内自主借用外债；支持境内银行与境外机构加强合作，规范探索「贷款 + 外部直投」等业务模式。</li><li>加强交流合作：面向新一代信息技术、人工智能、量子科技、生物技术、新能源和未来能源、工业母机、航空及航天装备、电力装备、新材料、核心基础零部件和仪器仪表等领域和方向，设立母基金或专业化子基金；支持获境外机构投资的科技型企业深化与相关国别的产业链合作。</li><li>完善退出机制：依法合规加快符合条件的科技型企业境外上市备案；支持科技型企业赴香港上市；支持上市公司综合运用股份、定向可转债等多种支付工具，并购科技型企业，畅通并购退出渠道；修订《外国投资者对上市公司战略投资管理办法》，进一步放宽投资条件；稳步推进私募股权创投基金份额转让试点。</li></ul><h3>Linus Torvalds 受访，评论开源安全及 AI 炒作</h3><p>据 <i>The New Stack</i> <a href="https://thenewstack.io/linus-torvalds-on-security-ai-open-source-and-trust/">报道</a>，Linux 之父 Linus Torvalds 近日在西雅图参加了 Linux 基金会北美开源峰会，其间接受了早期 Linux 贡献者 Dirk Hohndel（现任 Verizon 开源项目办公室负责人）的采访。</p><ul><li>关于开源硬件，Torvalds 对其发展速度表达了一定担忧，称即使 RISC-V 架构已经过多年开发，在部署阶段可能仍然无法避免 x86 和 ARM 历史上遭遇的所有问题。由于软件层面的工作和硬件之间的抽象层级过多，开源硬件本身并不能减少软件适配中的摩擦。</li><li>关于近期的 xz 漏洞事件，Torvalds 表示无论是开源还是闭源软件都存在对「信任」的依赖，而如何判断信任是否被破坏仍是未解难题。目前没有防御机制来阻止恶意代码被提交到上游，但经验似乎表明开源社区具有内在的稳固性，可以在事后快速发现此类漏洞。</li><li>关于 AI，Torvalds 表示厌恶其中的炒作成分，呼吁理性看待所谓 AI 将取代人类工作的宣言，正如对待加密货币等过往热潮一样。至于在编程时使用 AI 工具辅助，他持乐观态度，认为让工具变得更智能并不是坏事；智能化的趋势不可避免，但也绝不同于悲观和炒作者的设想。</li><li>关于开源工作，Torvalds 表示开源的要义就在于不同人可以关注不同领域，例如他研究内核是因为对 CPU 的底层工作机制感兴趣，而 Linux 基金会里的其他人可能关注开源数据项目；开源项目的维持则需要对其他人有用，而不只是对自己。Torvalds 还表示不打算启动任何新项目，因为 Linux 早已解决了他遇到的所有问题。</li></ul><h3>亚马逊为收集情报在竞争对手平台秘密开店</h3><p>据《华尔街日报》<a href="https://www.wsj.com/business/retail/amazon-secret-operation-intel-rivals-eb82ea3c">报道</a>，多年以来，亚马逊一直通过一家受其控制的公司 Big River 在沃尔玛、eBay 等电商平台上销售商品，以便获取对手的各项情报，例如关于电商平台、物流运营和支付服务的定价数据、物流信息等。</p><p>据报道，Big River 团队组建于 2015 年，其内部代号为 Project Curiosity（后改名为「小企业洞察团队」）。该团队在美国、德国、英国、印度和日本开展业务，重点关注亚马逊最大竞争对手沃尔玛，甚至获得了沃尔玛平台的「专业卖家」称号。Big River 还与联邦快递等物流公司合作，以便获取其服务数据，供亚马逊调整自身物流业务。</p><p>为了保密，Big River 团队成员对外不公开自己的亚马逊身份，也不使用亚马逊域名邮箱通讯；在汇报时，只向亚马逊高管提供纸质版材料，每份副本均印有编号，以便在会后收回；Big River 销售商品的品牌名称是自己编造的，每次售完库存或上架新品都会更换。该团队还制定了针对泄密事件的预案，包括宣称其目的是改善亚马逊本站的卖家体验、属于正常商业调研等。沃尔玛在此事报道之前对亚马逊的做法不知情。</p><h2>看看就行的小道消息</h2><ul><li>据 X 用户 Kosutami 声称，由于精织斜纹（FineWoven）配件耐用性差，苹果已经决定将其停产，未来可能会转向使用另一种非皮革材料来生产配件。苹果去年 9 月宣布停止销售皮革配件，改用精织斜纹。苹果在产品概述中称，精织斜纹「有着麂皮绒般的柔软质感」「消费后回收成分占比达到 68%，碳排放量比皮革材料显著减少」。精织斜纹配件的定价与此前的皮革配件基本一致，iPhone 保护壳、MagSafe 卡包为 59 美元（479 元），AirTag 钥匙扣为 35 美元（299 元）、Apple Watch 表带系列为 99 美元（779 元）起。在今年发布春季新配件时，苹果已经没有新上架该材质配件。</li><li>据 Mark Gurman 声称，苹果正在开发基于本地运算的大语言模型，可能通过谷歌和其他提供商的技术来填补不足。</li><li>据 Mark Gurman 声称，由于苹果拟在今年底到明年初推出搭载 M4 和 M4 Pro 芯片的新 Mac mini，在此之前已经没有足够时间推出 M3 型号，因此预计 Mac mini 将会跳过 M3 这代处理器。</li></ul><h2 style="margin-left: 0px;"><strong>少数派的近期动态</strong></h2><ul><li>由用户提供产品创意、由少数派实现孵化落地的快捷指令手机壳 BANG!CASE，已顺利完成超前预售。现在起到 5 月 6 日正式发售前，仍可以 199 元（原价 259 元）的优惠价格购买，并获得 3 个月少数派会员、站内特制徽章等权益。我们还于近日上线了 BANG!CASE 专题页，除详尽介绍产品功能外，还提供专为 BANG!CASE 打造的壁纸下载，欢迎浏览了解。<a href="https://sspai.com/page/bangcase"><strong>前往专题页</strong></a></li><li>由会员参与设计的新版周边「<a href="https://sspai.com/product/26">能量组合</a>」已经发货，包含定制图案充电头、全新设计的贴纸和徽章。感谢此前耐心等待，希望大家能喜欢这一版的周边。<ul><li>由于为分批生产，请对本版周边感兴趣的朋友尽早完成兑换。</li><li>会员周边是年度会员的专属权益，购买会员时长每满一年，可以获得一次兑换机会。如果还不是年度会员、或者已经兑换过其他周边，请考虑<a href="https://sspai.com/prime/explore">购买年度会员</a>以获得兑换点数。</li><li>如要查询兑换状态，请前往「<a href="https://sspai.com/prime/me">我的权益</a>」页面，然后选择「兑换记录」。如有其他问题，请<a href="https://work.weixin.qq.com/kfid/kfc53f2e1734a1f6d1a">联系客服</a>。</li></ul></li></ul><figure class="ss-imgRows"><img alt="" src="https://cdn.sspai.com/2024/04/22/5fb44dd7d2449482de0df359e91e116b.jpeg?imageView2/2/w/1120/q/90/interlace/1/ignore-error/1" /><img alt="" src="https://cdn.sspai.com/2024/04/22/07adce6c0ab523d40109f8badc03c53a.jpeg?imageView2/2/w/1120/q/90/interlace/1/ignore-error/1" /></figure><ul><li>少数派的老朋友几硕（JSAUX）联系到我们，向我们展示了他们的对于显示器产品的思考。我们最近也拿到了他们即将发售，这款名为「几硕 FlipGo」的双屏便携显示设备，并将于 5 月 4 日上架少数派商店销售。<a href="https://sspai.com/post/88154"><strong>了解详情</strong></a></li></ul><figure class="image ss-img-wrapper"><img alt="N7L2bbDf7odhKNx4iWoci6uBnef" src="https://cdn.sspai.com/editor/u_/cogrr1tb34te092f6k9g.jpeg?imageView2/2/w/1120/q/90/interlace/1/ignore-error/1" /></figure><h2 style="margin-left: 0px;"><strong>你可能错过的好文章</strong></h2><ul><li><a href="https://sspai.com/prime/story/ingress-ten-years">小众游戏 Ingress 的十年：是什么让它令人如此着迷</a></li><li><a href="https://sspai.com/post/88196">本周看什么 | 最近值得一看的一大煲作品</a></li><li><a href="https://sspai.com/post/88186">赛博时代的复古异类：我们为什么还在用这些「旧玩意」</a></li><li><a href="https://sspai.com/post/88188">做一款创意驱动的手机壳，让每个人都能玩开心</a></li><li><a href="https://sspai.com/post/88132">探索三家神秘的 Apple Watch 快闪店，一段梦想超越现实的特殊时光</a></li></ul>
 ]]></content:encoded>
 <pubDate>Mon, 22 Apr 2024 00:59:03 GMT</pubDate>
-<pubDate>Mon, 22 Apr 2024 00:59:03 GMT</pubDate>
 </item>
-
 <item>
 <title>本周看什么 | 最近值得一看的一大煲作品</title>
 <link>https://sspai.com/post/88196</link>
