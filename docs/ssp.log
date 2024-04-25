@@ -5295,3 +5295,9 @@ error: Error code: 401 - {'error': {'message': 'Incorrect API key provided: sess
 Append: [iPhone 终于有任天堂模拟器了：聊聊热门应用 Delta 的前世今生](https://sspai.com/post/88299)
 append_entries: 2
 Finish: 2024-04-25 10:14:08.417375
+------------------------------------------------------
+Started: 2024-04-25 12:21:19.844224
+Existing_entries: 238
+Fetching from https://rsshub.app/sspai/index
+append_entries: 0
+Finish: 2024-04-25 12:21:20.065383
