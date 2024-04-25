@@ -5259,3 +5259,12 @@ Existing_entries: 234
 Fetching from https://rsshub.app/sspai/index
 append_entries: 0
 Finish: 2024-04-25 02:24:12.892170
+------------------------------------------------------
+Started: 2024-04-25 04:16:26.004935
+Existing_entries: 234
+Fetching from https://rsshub.app/sspai/index
+Summarization failed, append the original article
+error: Error code: 401 - {'error': {'message': 'Incorrect API key provided: sess-0fU*********************************CSJU. You can find your API key at https://platform.openai.com/account/api-keys.', 'type': 'invalid_request_error', 'param': None, 'code': 'invalid_api_key'}}
+Append: [派早报：OPPO 发布 K12、vivo 推出 Z9 系列手机等](https://sspai.com/post/88335)
+append_entries: 1
+Finish: 2024-04-25 04:16:27.420450
