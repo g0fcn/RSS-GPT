@@ -5787,3 +5787,9 @@ error: Error code: 401 - {'error': {'message': 'Incorrect API key provided: sess
 Append: [找回最简单的摄影乐趣：索尼 A7C2](https://sspai.com/post/85853)
 append_entries: 1
 Finish: 2024-05-01 10:15:22.310863
+------------------------------------------------------
+Started: 2024-05-01 12:26:21.214252
+Existing_entries: 258
+Fetching from https://rsshub.app/sspai/index
+append_entries: 0
+Finish: 2024-05-01 12:26:21.410664
