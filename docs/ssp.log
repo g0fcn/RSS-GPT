@@ -5778,3 +5778,12 @@ error: Error code: 401 - {'error': {'message': 'Incorrect API key provided: sess
 Append: [如何用 LaTeX 给文档创建美观的目录和索引](https://sspai.com/post/87254)
 append_entries: 1
 Finish: 2024-05-01 08:20:14.847519
+------------------------------------------------------
+Started: 2024-05-01 10:15:21.817641
+Existing_entries: 257
+Fetching from https://rsshub.app/sspai/index
+Summarization failed, append the original article
+error: Error code: 401 - {'error': {'message': 'Incorrect API key provided: sess-0fU*********************************CSJU. You can find your API key at https://platform.openai.com/account/api-keys.', 'type': 'invalid_request_error', 'param': None, 'code': 'invalid_api_key'}}
+Append: [找回最简单的摄影乐趣：索尼 A7C2](https://sspai.com/post/85853)
+append_entries: 1
+Finish: 2024-05-01 10:15:22.310863
