@@ -5850,3 +5850,12 @@ error: Error code: 401 - {'error': {'message': 'Incorrect API key provided: sess
 Append: [把宝贵的时间留给佳作，追剧观影少不了这些辅助](https://sspai.com/post/79491)
 append_entries: 1
 Finish: 2024-05-02 06:18:16.584417
+------------------------------------------------------
+Started: 2024-05-02 08:17:40.308953
+Existing_entries: 259
+Fetching from https://rsshub.app/sspai/index
+Summarization failed, append the original article
+error: Error code: 401 - {'error': {'message': 'Incorrect API key provided: sess-0fU*********************************CSJU. You can find your API key at https://platform.openai.com/account/api-keys.', 'type': 'invalid_request_error', 'param': None, 'code': 'invalid_api_key'}}
+Append: [用 Keyboard Maestro 增强浏览器使用体验](https://sspai.com/post/83865)
+append_entries: 1
+Finish: 2024-05-02 08:17:40.704342
