@@ -6164,3 +6164,12 @@ Existing_entries: 271
 Fetching from https://rsshub.app/sspai/index
 append_entries: 0
 Finish: 2024-05-06 04:17:39.067583
+------------------------------------------------------
+Started: 2024-05-06 06:19:14.166760
+Existing_entries: 271
+Fetching from https://rsshub.app/sspai/index
+Summarization failed, append the original article
+error: Error code: 401 - {'error': {'message': 'Incorrect API key provided: sess-0fU*********************************CSJU. You can find your API key at https://platform.openai.com/account/api-keys.', 'type': 'invalid_request_error', 'param': None, 'code': 'invalid_api_key'}}
+Append: [喀拉峻的瞬间](https://sspai.com/post/88505)
+append_entries: 1
+Finish: 2024-05-06 06:19:14.648421
