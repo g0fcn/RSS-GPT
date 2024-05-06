@@ -6173,3 +6173,15 @@ error: Error code: 401 - {'error': {'message': 'Incorrect API key provided: sess
 Append: [喀拉峻的瞬间](https://sspai.com/post/88505)
 append_entries: 1
 Finish: 2024-05-06 06:19:14.648421
+------------------------------------------------------
+Started: 2024-05-06 08:17:56.997148
+Existing_entries: 272
+Fetching from https://rsshub.app/sspai/index
+Summarization failed, append the original article
+error: Error code: 401 - {'error': {'message': 'Incorrect API key provided: sess-0fU*********************************CSJU. You can find your API key at https://platform.openai.com/account/api-keys.', 'type': 'invalid_request_error', 'param': None, 'code': 'invalid_api_key'}}
+Append: [从 1.0 到 95，见证 Windows 界面从青涩到成熟](https://sspai.com/post/87835)
+Summarization failed, append the original article
+error: Error code: 401 - {'error': {'message': 'Incorrect API key provided: sess-0fU*********************************CSJU. You can find your API key at https://platform.openai.com/account/api-keys.', 'type': 'invalid_request_error', 'param': None, 'code': 'invalid_api_key'}}
+Append: [理解 Keynote「神奇移动」效果的原理](https://sspai.com/post/77495)
+append_entries: 2
+Finish: 2024-05-06 08:17:57.708728
