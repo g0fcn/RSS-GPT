@@ -31982,3 +31982,10 @@ Fetching from https://rsshub.app/sspai/index
 Feed error: 403
 append_entries: 0
 error when rendering xml, skip docs/ssp
+------------------------------------------------------
+Started: 2025-03-09 18:17:56.782009
+Existing_entries: 279
+Fetching from https://rsshub.app/sspai/index
+Feed error: 403
+append_entries: 0
+error when rendering xml, skip docs/ssp
